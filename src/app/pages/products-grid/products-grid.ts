@@ -1,4 +1,4 @@
-import { Component, input, OnInit, Signal, signal } from '@angular/core';
+import { Component, computed, input, OnInit, Signal, signal } from '@angular/core';
 import { GetProductFilter, Product } from '../../models/product';
 import { ProductService } from '../../services/product-service';
 import { CommonModule } from '@angular/common';
@@ -14,16 +14,20 @@ import { CommonModule } from '@angular/common';
   styles: ``,
 })
 export default class ProductsGrid implements OnInit {
-  category = input<string>('');
+  category = input<string>('all');
 
+  productsFilterSignal = signal<GetProductFilter>({});
+  productsFilter = computed<GetProductFilter>(()=>({
+    ...this.productsFilterSignal(),
+    category:this.category()
+  }));
   products:Signal<Product[]>;
-  productsFilter = signal<GetProductFilter>({});
 
   constructor(private productService: ProductService) {
-    this.products = this.productService.getProductsSignal(this.productsFilter());
+    this.products = this.productService.getProductsSignal();
   }
   
   ngOnInit(): void {
-    this.productsFilter.update(filter => ({...filter, category:this.category()}) )
+    this.productService.setFilter(this.productsFilter());
   }
 }

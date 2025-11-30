@@ -1,4 +1,4 @@
-import { Injectable, signal, Signal } from '@angular/core';
+import { computed, Injectable, signal, Signal } from '@angular/core';
 import { catchError, filter, map, Observable, of, shareReplay } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop'
 import { GetProductFilter, Product } from '../models/product';
@@ -16,17 +16,20 @@ export class ProductService {
       console.error('Failed to load products.json', err);
       return of([]);
     }),
-    shareReplay({bufferSize:1, refCount:true}),
-  )
+    shareReplay({bufferSize:1, refCount:true})
+    )
 
     this.productsSignal = toSignal(this.products$, { initialValue: [] });
+
+    this.filteredProducts = computed(()=>{
+      return this.productsSignal().filter(this.productsFilterFunc)
+    })
   }
   
   private readonly url = '/api/products.json'
-  
   private readonly products$: Observable<Product[]>;
-
   readonly productsSignal: Signal<Product[]>;
+  private readonly filteredProducts: Signal<Product[]>;
 
   private productsFilterFunc = (product:Product):boolean => {
     let filter = this.productsFilter();
@@ -40,7 +43,7 @@ export class ProductService {
     if(!!filter.name){
       filterAccept = (product.name.toLocaleLowerCase().indexOf(filter.name.toLocaleLowerCase())) > -1
     }
-    if(!!filter.category){
+    if(!!filter.category && filter.category.toLocaleLowerCase() !== 'all'){
       filterAccept = (product.category === filter.category)
     }
     return filterAccept;
@@ -48,14 +51,15 @@ export class ProductService {
 
   private productsFilter = signal<GetProductFilter>({});
 
-  getProductsSignal(filter?:GetProductFilter):Signal<Product[]>{
-    if(filter){
-      this.productsFilter.set(filter);
-    }
-    return toSignal(this.products$,{initialValue:[]});
+  setFilter(filter?: GetProductFilter){
+    if(filter) this.productsFilter.set(filter)
   }
 
-  getProducts():Observable<Product[]>{
+  getProductsSignal():Signal<Product[]>{
+    return this.filteredProducts;
+  }
+
+  getProducts$():Observable<Product[]>{
     return this.products$;
   }
 }
