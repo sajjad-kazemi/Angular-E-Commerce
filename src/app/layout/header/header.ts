@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
   selector: 'app-header',
   imports: [MatToolbar, HeaderActions, MatIconButton,MatIcon, RouterLink],
   template: `
-    <mat-toolbar class="w-full border-b shadow-md py-2">
+    <mat-toolbar class="w-full shadow-sm py-2">
       <div class="max-w-[1200px] mx-auto w-full flex items-center justify-between">
         <span class="flex items-center">
           <button matIconButton="elevated" routerLink="/"><mat-icon>home</mat-icon></button>

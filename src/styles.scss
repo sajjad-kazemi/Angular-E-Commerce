@@ -31,3 +31,10 @@ body {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Nunito, "Helvetica Neue", sans-serif; }
+
+// responsive grid (removing later)
+.responsive-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(270px, 1fr));
+  gap:1rem;
+}

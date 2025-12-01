@@ -46,6 +46,9 @@ export class ProductService {
     if(!!filter.category && filter.category.toLocaleLowerCase() !== 'all'){
       filterAccept = (product.category === filter.category)
     }
+    if(!!filter.onlyInStock){
+      filterAccept = product.inStock
+    }
     return filterAccept;
   }
 

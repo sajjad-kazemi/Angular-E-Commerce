@@ -9,8 +9,10 @@ import { Footer } from "./layout/footer/footer";
   selector: 'app-root',
   imports: [RouterOutlet, CommonModule, FormsModule, Header, Footer],
   template: `
-    <app-header></app-header>
-    <router-outlet/>
+    <app-header class="z-10"></app-header>
+    <main class="p-5 min-h-[100vh]">
+      <router-outlet/>
+    </main>
     <app-footer></app-footer>
   `,
   styles: [],

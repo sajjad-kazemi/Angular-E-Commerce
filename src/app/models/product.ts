@@ -8,10 +8,14 @@ export type Product = {
     reviewCount: number;
     inStock: boolean;
     category: string;
+    amountInCart?:number;
 }
 
 export type GetProductFilter = {
     id?:number;
     category?:string;
     name?:string;
+    onlyInStock?: boolean;
 }
+
+export const Categories:string[] =  ['all','accessory','technology','clothes']
