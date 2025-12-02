@@ -8,7 +8,7 @@ import { MatIcon } from "@angular/material/icon";
   selector: 'app-product-card',
   imports: [DecimalPipe, MatAnchor, MatIcon],
   template: `
-    <div class="bg-white cursor-pointer rounded-xl shadow-lg overflow-hidden flex flex-col h-full hover:shadow-2xl hover:scale-101 transition-transform transition-shadow duration-200 ease-in-out">
+    <div class="bg-white cursor-pointer rounded-xl shadow-lg overflow-hidden flex flex-col h-full hover:shadow-2xl hover:scale-101 transition-transform transition-shadow duration-200 ease-in-out select-none">
         <img src={{product()?.imageUrl}} class="w-full object-contain rounded-t-xl h-[250px]" />
         <div class="p-5 flex flex-col items-center">
           <h3 class="text-lg font-semibold text-gray-900 mb-2 leading-tight">{{product()?.name}}</h3>
