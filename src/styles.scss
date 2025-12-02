@@ -1,6 +1,7 @@
 
 @use '@angular/material' as mat;
 @use "tailwindcss";
+@use '@ngxpert/hot-toast/styles';
 
 html {
   @include mat.theme((
@@ -38,3 +39,4 @@ body { margin: 0; font-family: Nunito, "Helvetica Neue", sans-serif; }
   grid-template-columns: repeat(auto-fill,minmax(270px, 1fr));
   gap:1rem;
 }
+

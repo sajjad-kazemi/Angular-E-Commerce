@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import {MatToolbar} from '@angular/material/toolbar'
 import { HeaderActions } from "../header-actions/header-actions";
 import { MatAnchor, MatIconButton } from "@angular/material/button";
@@ -21,5 +21,4 @@ import { RouterLink } from '@angular/router';
   styles: ``,
 })
 export class Header {
-
 }

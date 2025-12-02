@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-      <mat-sidenav opened="true" mode="side" class="max-w-[15%]">
+      <mat-sidenav [opened]="sidebarOpen()" mode="side" class="max-w-[15%]">
         <div class="p-6">
           <h2 class="text-lg text-gray-900">Categories</h2>
           <mat-nav-list>
@@ -15,11 +15,17 @@
         </div>
       </mat-sidenav>
       <mat-sidenav-content class="bg-gray-100 p-6 h-full">
-        <div>
-          <h2 class="text-2xl font-bold">{{category() | uppercase}}</h2>
-          <p>{{products().length}} items found</p>
+        <div class="flex w-full gap-10">
+          <button matButton="filled" (click)="sidebarOpen.set(!sidebarOpen())" class="mt-2">
+            <mat-icon>{{sidebarOpen() ? 'close' :'arrow_right_alt'}}</mat-icon>
+            Filters
+          </button>
+          <div>  
+            <h2 class="text-3xl font-bold">{{category() | uppercase}}</h2>
+            <p>{{products().length}} items found</p>
+          </div>
         </div>
-        <div class="responsive-grid mt-5">
+          <div class="responsive-grid mt-5">
           @for (product of products(); track product.id) {
             <app-product-card [product]="product" />
           }

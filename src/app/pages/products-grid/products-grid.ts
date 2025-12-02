@@ -7,10 +7,12 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle"
 import {MatListModule} from "@angular/material/list"
 import { RouterLink } from "@angular/router";
 import { EcommerceStore } from '../../ecommerce-store';
+import { MatAnchor, MatIconButton, MatButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
   selector: 'app-products-grid',
-  imports: [CommonModule, ProductCard, MatSidenavModule, MatListModule, RouterLink, MatSlideToggleModule],
+  imports: [CommonModule, ProductCard, MatSidenavModule, MatListModule, RouterLink, MatSlideToggleModule, MatAnchor, MatIconButton, MatIcon],
   templateUrl: 'products-grid.html',
   styles: ``
 })
@@ -25,6 +27,7 @@ export default class ProductsGrid {
   }));
   onlyInStock = signal<boolean>(false);
   products:Signal<Product[]>;
+  sidebarOpen = signal(true);
   
   constructor() {
     this.products = this.store.getProducts(this.productsFilter())
