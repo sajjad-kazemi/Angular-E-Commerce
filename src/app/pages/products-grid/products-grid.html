@@ -1,34 +1,45 @@
 <mat-sidenav-container>
-      <mat-sidenav [opened]="sidebarOpen()" mode="side" class="max-w-[15%]">
-        <div class="p-6">
-          <h2 class="text-lg text-gray-900">Categories</h2>
-          <mat-nav-list>
-            @for(cat of categories(); track cat){
-                <mat-list-item [activated]="cat === category()" [routerLink]="['/products',cat]">
-                  <span matListItemTitle>
-                    {{cat | titlecase}}
-                  </span>
-                </mat-list-item>  
-              }
-          </mat-nav-list>
-          <mat-slide-toggle [checked]="onlyInStock()" (change)="onlyInStock.set($event.checked)">Only In Stock Items</mat-slide-toggle>
-        </div>
-      </mat-sidenav>
-      <mat-sidenav-content class="bg-gray-100 p-6 h-full">
-        <div class="flex w-full gap-10">
-          <button matButton="filled" (click)="sidebarOpen.set(!sidebarOpen())" class="mt-2">
-            <mat-icon>{{sidebarOpen() ? 'close' :'arrow_right_alt'}}</mat-icon>
-            Filters
-          </button>
-          <div>  
-            <h2 class="text-3xl font-bold">{{category() | uppercase}}</h2>
-            <p>{{products().length}} items found</p>
-          </div>
-        </div>
-          <div class="responsive-grid mt-5">
-          @for (product of products(); track product.id) {
-            <app-product-card [product]="product" />
-          }
-        </div>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
+  <mat-sidenav [opened]="sidebarOpen()" mode="side" class="max-w-[15%]">
+    <div class="p-6">
+      <h2 class="text-lg text-gray-900">Categories</h2>
+      <mat-nav-list>
+        @for(cat of categories(); track cat){
+        <mat-list-item
+          [activated]="cat === category()"
+          [routerLink]="['/products', cat]"
+        >
+          <span matListItemTitle>
+            {{ cat | titlecase }}
+          </span>
+        </mat-list-item>
+        }
+      </mat-nav-list>
+      <mat-slide-toggle
+        [checked]="onlyInStock()"
+        (change)="onlyInStock.set($event.checked)"
+        >Only In Stock Items</mat-slide-toggle
+      >
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content class="bg-gray-100 p-6 h-full">
+    <div class="flex w-full gap-10">
+      <button
+        matButton="filled"
+        (click)="sidebarOpen.set(!sidebarOpen())"
+        class="mt-2"
+      >
+        <mat-icon>{{ sidebarOpen() ? "close" : "arrow_right_alt" }}</mat-icon>
+        Filters
+      </button>
+      <div>
+        <h2 class="text-3xl font-bold">{{ category() | uppercase }}</h2>
+        <p>{{ products().length }} items found</p>
+      </div>
+    </div>
+    <div class="responsive-grid mt-5">
+      @for (product of products(); track product.id) {
+      <app-product-card [product]="product" />
+      }
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -12,7 +12,7 @@ import { MatBadge } from '@angular/material/badge'
   template: `
     <div class="flex items-center gap-2">
       <button matIconButton matTooltip="Cart" routerLink="/cart"><mat-icon>shopping_cart</mat-icon></button>
-      <button matIconButton [matBadgeHidden]="store.wishlistItemsIds.length === 0" [matBadge]="store.wishlistItemsIds.length" matTooltip="Wish List" routerLink="/my_wishlist"><mat-icon>favorite</mat-icon></button>
+      <button matIconButton [matBadgeHidden]="WishlistLength() === 0" [matBadge]="WishlistLength()" matTooltip="Wish List" routerLink="/my_wishlist"><mat-icon>favorite</mat-icon></button>
       <button matButton>Sign in</button>
       <button matButton="filled">Sign up</button>
       <button matIconButton matTooltip="Profile"><mat-icon>person</mat-icon></button>
@@ -22,4 +22,5 @@ import { MatBadge } from '@angular/material/badge'
 })
 export class HeaderActions {
   store = inject(EcommerceStore);
+  WishlistLength = this.store.wishlistLength;
 }

@@ -1,38 +1,56 @@
-import { Component, computed, effect, inject, input, OnInit, Signal, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  OnInit,
+  Signal,
+  signal,
+} from '@angular/core';
 import { Categories, GetProductFilter, Product } from '../../models/product';
 import { CommonModule } from '@angular/common';
-import { ProductCard } from "../../components/product-card/product-card";
-import { MatSidenavModule } from "@angular/material/sidenav"
-import { MatSlideToggleModule } from "@angular/material/slide-toggle"
-import {MatListModule} from "@angular/material/list"
-import { RouterLink } from "@angular/router";
+import { ProductCard } from '../../components/product-card/product-card';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatListModule } from '@angular/material/list';
+import { RouterLink } from '@angular/router';
 import { EcommerceStore } from '../../ecommerce-store';
-import { MatAnchor, MatIconButton, MatButton } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
+import { MatAnchor, MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-products-grid',
-  imports: [CommonModule, ProductCard, MatSidenavModule, MatListModule, RouterLink, MatSlideToggleModule, MatAnchor, MatIconButton, MatIcon],
+  imports: [
+    CommonModule,
+    ProductCard,
+    MatSidenavModule,
+    MatListModule,
+    RouterLink,
+    MatSlideToggleModule,
+    MatAnchor,
+    MatIcon,
+  ],
   templateUrl: 'products-grid.html',
-  styles: ``
+  styles: ``,
 })
 export default class ProductsGrid {
   store = inject(EcommerceStore);
   category = input<string>('all');
-  categories = signal<string[]>(Categories)
+  categories = signal<string[]>(Categories);
   productsFilterSignal = signal<GetProductFilter>({});
-  productsFilter = computed<GetProductFilter>(()=>({
-    category:this.category(),
-    onlyInStock:this.onlyInStock()
+  productsFilter = computed<GetProductFilter>(() => ({
+    category: this.category(),
+    onlyInStock: this.onlyInStock(),
   }));
   onlyInStock = signal<boolean>(false);
-  products:Signal<Product[]>;
+  products: Signal<Product[]>;
   sidebarOpen = signal(true);
-  
+
   constructor() {
-    this.products = this.store.getProducts(this.productsFilter())
-    effect(()=>{
-      this.products = this.store.getProducts(this.productsFilter())
-    })
+    this.products = this.store.getProducts(this.productsFilter());
+    effect(() => {
+      this.products = this.store.getProducts(this.productsFilter());
+    });
   }
 }
