@@ -104,7 +104,9 @@ export const EcommerceStore = signalStore(
     getWishlistItems: () => {
       let wishlist = store.wishlistItems();
       let wishlistProducts = store.products();
-      wishlistProducts.filter((item) => wishlist.indexOf(item.id) >= 0);
+      wishlistProducts = wishlistProducts.filter((item) =>
+        wishlist.includes(item.id)
+      );
       return wishlistProducts;
     },
     wishlistLength: () => {
