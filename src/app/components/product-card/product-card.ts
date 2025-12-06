@@ -11,13 +11,21 @@ import { DecimalPipe } from '@angular/common';
 import { MatAnchor, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { EcommerceStore } from '../../ecommerce-store';
-import { MatChipsModule } from '@angular/material/chips'
-import { RouterLink } from "@angular/router";
-import { ToggleWishlistButton } from "../toggle-wishlist-button/toggle-wishlist-button";
+import { MatChipsModule } from '@angular/material/chips';
+import { RouterLink } from '@angular/router';
+import { ToggleWishlistButton } from '../toggle-wishlist-button/toggle-wishlist-button';
 
 @Component({
   selector: 'app-product-card',
-  imports: [DecimalPipe, MatAnchor, MatIcon, MatChipsModule, RouterLink, ToggleWishlistButton],
+  imports: [
+    DecimalPipe,
+    MatAnchor,
+    MatIcon,
+    MatChipsModule,
+    RouterLink,
+    ToggleWishlistButton,
+    MatIconButton,
+  ],
   template: `
     <div
       class="relative bg-white cursor-pointer rounded-xl overflow-hidden flex flex-col h-full hover:shadow-xl hover:scale-101 transition-transform transition-shadow duration-200 ease-in-out select-none"
@@ -26,7 +34,10 @@ import { ToggleWishlistButton } from "../toggle-wishlist-button/toggle-wishlist-
         src="{{ product()?.imageUrl }}"
         class="w-full object-contain !color-red rounded-t-xl h-[250px]"
       />
-      <app-toggle-wishlist-button [productId]="product()?.id" [isDeleteButton]="wishlistDeleteButton()"/>
+      <app-toggle-wishlist-button
+        [productId]="product()?.id"
+        [isDeleteButton]="wishlistDeleteButton()"
+      />
       <div class="p-5 flex flex-col items-center">
         <h3 class="text-lg font-semibold text-gray-900 mb-2 leading-tight">
           {{ product()?.name }}
@@ -37,7 +48,7 @@ import { ToggleWishlistButton } from "../toggle-wishlist-button/toggle-wishlist-
         <div class="flex flex-row w-full justify-between mb-2">
           <div class="badge-container">
             <mat-chip>
-              {{product()?.category}}
+              {{ product()?.category }}
             </mat-chip>
           </div>
           <span>rating</span>
@@ -55,11 +66,27 @@ import { ToggleWishlistButton } from "../toggle-wishlist-button/toggle-wishlist-
               >\${{ product()?.price | number : '2.2-4' }}</span
             >
           </div>
-          <div>
-            <button matButton="filled" (click)="AddToCartClick()">
+          <div class="flex items-center align-center">
+            @if(cartQuantity() == 0){
+            <button matButton="filled" (click)="addToCart(product()?.id)">
               <mat-icon>add</mat-icon>
               Add To Cart
             </button>
+            } @else {
+            <button
+              matIconButton
+              (click)="addToCart(product()?.id)"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+            <span class="m-2 text-xl font-bold">{{ cartQuantity() }}</span>
+            <button
+              matIconButton
+              (click)="removeFromCart(product()?.id)"
+            >
+              <mat-icon>remove</mat-icon>
+            </button>
+            }
           </div>
           }
         </div>
@@ -73,10 +100,26 @@ import { ToggleWishlistButton } from "../toggle-wishlist-button/toggle-wishlist-
   `,
 })
 export class ProductCard {
-  product = input<Product>();
   store = inject(EcommerceStore);
+  product = input<Product>();
   wishlistDeleteButton = input<boolean>(false);
-  
-  // AddToCartClick = output();
-  AddToCartClick = () => console.log('cart');
+
+  cartQuantity = computed(() => {
+    return (
+      this.store
+        .cartItems()
+        .find((item) => item.productId === this.product()?.id)?.quantity || 0
+    );
+  });
+  AddToCart = output<number | undefined>();
+  addToCart(productId?:number){
+    this.store.addToCart(productId)
+    this.AddToCart.emit(productId)
+  }
+
+  RemoveFromCart = output<number | undefined>();
+  removeFromCart(productId?:number){
+    this.store.removeFromCart(productId)
+    this.RemoveFromCart.emit(productId)
+  }
 }

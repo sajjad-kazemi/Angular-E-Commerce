@@ -1,4 +1,4 @@
-import { computed, inject, Inject } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import { GetProductFilter, Product } from './models/product';
 import {
   patchState,
@@ -12,10 +12,12 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { Toaster } from './services/toaster';
+import { cartItem } from './models/cart';
 
 export type EcommerceState = {
   products: Product[];
   wishlistItems: Product[];
+  cartItems: cartItem[];
 };
 
 export const EcommerceStore = signalStore(
@@ -23,6 +25,7 @@ export const EcommerceStore = signalStore(
   withState({
     products: [] as Product[],
     wishlistItems: [] as Number[],
+    cartItems: [] as cartItem[],
   }),
   withProps(() => ({
     http: inject(HttpClient),
@@ -98,6 +101,77 @@ export const EcommerceStore = signalStore(
       if (productId == null) return false;
       return store.wishlistItems().includes(productId);
     },
+    getCartProducts: (): Product[] => {
+      let items = store.cartItems();
+      // let cartProducts = store.products().map(product =>{
+      let cartProducts: Product[] = [];
+      store.products().forEach((product) => {
+        let findCartItem = items.find((x) => x.productId === product.id);
+        if (findCartItem) {
+          cartProducts.push({
+            ...product,
+            amountInCart: findCartItem.quantity,
+          });
+        }
+      });
+      return cartProducts;
+    },
+    addToCart: (productId?: number): void => {
+      if (productId == null) {
+        store.toaster.error();
+        return;
+      }
+
+      let findCartItem = store
+        .cartItems()
+        .find((item) => item.productId === productId);
+
+      if (!findCartItem) {
+        const findProduct = store
+          .products()
+          .find((item) => item.id === productId);
+
+        if (!findProduct?.id) {
+          store.toaster.error();
+          return;
+        }
+        findCartItem = { productId: findProduct.id, quantity: 1 } as cartItem;
+      } else {
+        findCartItem.quantity++;
+      }
+      const newCartItems = store
+        .cartItems()
+        .filter((item) => item.productId !== productId);
+      newCartItems.push(findCartItem);
+
+      patchState(store, { cartItems: newCartItems });
+      store.toaster.success('Product added to cart');
+    },
+    removeFromCart: (productId?: number): void => {
+      if (productId == null) {
+        store.toaster.error();
+        return;
+      }
+
+      let findCartItem = store
+        .cartItems()
+        .find((item) => item.productId === productId);
+
+      if (!findCartItem) {
+        store.toaster.error();
+        return;
+      } else {
+        findCartItem.quantity--;
+      }
+      const newCartItems = store
+        .cartItems()
+        .filter((item) => item.productId !== productId);
+      if (findCartItem.quantity > 0) {
+        newCartItems.push(findCartItem);
+      }
+      patchState(store, { cartItems: newCartItems });
+      store.toaster.success('Product removed to cart');
+    },
   })),
   withComputed((store) => ({
     getWishlistItems: () => {
@@ -110,6 +184,9 @@ export const EcommerceStore = signalStore(
     },
     wishlistLength: () => {
       return store.wishlistItems().length;
+    },
+    cartLength: () => {
+      return store.cartItems().length;
     },
   })),
   withHooks({
