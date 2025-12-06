@@ -1,31 +1,57 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { EcommerceStore } from '../../ecommerce-store';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-import { MatIcon } from "@angular/material/icon";
-import { BackButton } from "../../components/back-button/back-button";
+import { MatIcon } from '@angular/material/icon';
+import { BackButton } from '../../components/back-button/back-button';
+import { ProductCard } from '../../components/product-card/product-card';
+import { MatAnchor } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-my-wishlist',
-  imports: [CommonModule, MatCardModule, MatIcon, BackButton],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatIcon,
+    BackButton,
+    ProductCard,
+    MatAnchor,
+    RouterLink,
+  ],
   template: `
     <div class="mx-auto max-w-[1200px] px-4">
-      <app-back-button navigateTo="/products" label="back to home"></app-back-button>
-      @for(item of wishlistItems;track item.id;){
-      <div>
-        {{ item.name }}
+      <app-back-button class="mb-3" navigateTo="/products">{{
+        'back to home' | titlecase
+      }}</app-back-button>
+      <div class="flex justify-between mb-10">
+        <h1 class="text-3xl font-bold">Wishlist</h1>
+        <p class="text-lg">
+          {{ wishlistLen() || 'No' }} Item{{ wishlistLen() > 1 ? 's' : '' }}
+        </p>
       </div>
-      } @empty {
-      <mat-card class="text-center max-w-[600px] mx-auto" color="">
-        <div class="text-red-500">
-          <mat-icon>priority_high</mat-icon>
-        </div>
-        <div class="text-center text-lg">
-          <h2 class="warning-title">there is no item in your wishlist</h2>
-          <p class="warning-description">
-            Browse items and add them to your wishlist to see them here.
+      @if(wishlistLen() > 0){
+      <div class="responsive-grid">
+        @for(item of this.store.getWishlistItems();track item.id;){
+        <app-product-card [product]="item" [wishlistDeleteButton]="true" />
+        }
+      </div>
+      } @else {
+      <div
+        class="flex flex-col items-center justify-center py-16 text-center gap-5"
+      >
+        <mat-icon class="text-gray-400 transform scale-150"
+          >favorite_border</mat-icon
+        >
+        <div>
+          <h2 class="text-xl font-bold">{{ 'your wishlist is empty' | titlecase }}</h2>
+          <p class="text-gray-600 mb-8 text-lg">
+            {{ 'save your favorite items here' | titlecase }}
           </p>
         </div>
-      </mat-card>
+        <button matButton="filled" routerLink="/products/all">
+          Explore Products
+        </button>
+      </div>
       }
     </div>
   `,
@@ -33,5 +59,7 @@ import { BackButton } from "../../components/back-button/back-button";
 })
 export default class MyWishlist {
   store = inject(EcommerceStore);
-  wishlistItems = this.store.getWishlistItems();
+  wishlistLen = computed(() => {
+    return this.store.getWishlistItems().length;
+  });
 }

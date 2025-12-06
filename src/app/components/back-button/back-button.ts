@@ -8,11 +8,11 @@ import { CommonModule } from '@angular/common';
   selector: 'app-back-button',
   imports: [MatAnchor, RouterLink, MatIcon, CommonModule],
   template: `
-    <button matButton="text" [routerLink]="navigateTo() ?? null" class="flex items-center gap-1">
+    <button matButton="text" [routerLink]="navigateTo()" class="flex items-center gap-1">
       <mat-icon>
         arrow_back
       </mat-icon>
-      {{label() | titlecase}}
+       <ng-content/>
     </button>
   `,
   styles: `
@@ -22,6 +22,5 @@ import { CommonModule } from '@angular/common';
   `,
 })
 export class BackButton {
-  label = input('')
   navigateTo = input<string>('')
 }

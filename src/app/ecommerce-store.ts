@@ -3,7 +3,6 @@ import { GetProductFilter, Product } from './models/product';
 import {
   patchState,
   signalStore,
-  watchState,
   withComputed,
   withHooks,
   withMethods,

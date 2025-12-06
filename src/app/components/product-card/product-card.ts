@@ -13,26 +13,20 @@ import { MatIcon } from '@angular/material/icon';
 import { EcommerceStore } from '../../ecommerce-store';
 import { MatChipsModule } from '@angular/material/chips'
 import { RouterLink } from "@angular/router";
+import { ToggleWishlistButton } from "../toggle-wishlist-button/toggle-wishlist-button";
 
 @Component({
   selector: 'app-product-card',
-  imports: [DecimalPipe, MatAnchor, MatIcon, MatIconButton, MatChipsModule, RouterLink],
+  imports: [DecimalPipe, MatAnchor, MatIcon, MatChipsModule, RouterLink, ToggleWishlistButton],
   template: `
     <div
-      class="relative bg-white cursor-pointer rounded-xl shadow-lg overflow-hidden flex flex-col h-full hover:shadow-2xl hover:scale-101 transition-transform transition-shadow duration-200 ease-in-out select-none"
+      class="relative bg-white cursor-pointer rounded-xl overflow-hidden flex flex-col h-full hover:shadow-xl hover:scale-101 transition-transform transition-shadow duration-200 ease-in-out select-none"
     >
       <img
         src="{{ product()?.imageUrl }}"
         class="w-full object-contain !color-red rounded-t-xl h-[250px]"
       />
-      <button
-        (click)="ToggleWishlist(IsInWishlist())"
-        matIconButton
-        [class]="IsInWishlist() ? '!text-red-500' : '!text-gray-500'"
-        class="!absolute z-10 top-3 right-3 w-10 rounded-full !bg-white shadow-md flex item-center justify-center cursor-pointer hover:bg-white-200 hover:shadow-lg"
-      >
-        <mat-icon>{{IsInWishlist() ? 'favorite' : 'favorite_border'}}</mat-icon>
-      </button>
+      <app-toggle-wishlist-button [productId]="product()?.id" [isDeleteButton]="wishlistDeleteButton()"/>
       <div class="p-5 flex flex-col items-center">
         <h3 class="text-lg font-semibold text-gray-900 mb-2 leading-tight">
           {{ product()?.name }}
@@ -81,16 +75,8 @@ import { RouterLink } from "@angular/router";
 export class ProductCard {
   product = input<Product>();
   store = inject(EcommerceStore);
-  IsInWishlist = computed(() => this.store.isInWishlist(this.product()?.id));
+  wishlistDeleteButton = input<boolean>(false);
   
   // AddToCartClick = output();
   AddToCartClick = () => console.log('cart');
-
-  ToggleWishlist(isInWishlist: boolean) {
-    if (isInWishlist) {
-      this.store.removeWishlistItem(this.product()?.id);
-    } else {
-      this.store.addWishlistItem(this.product()?.id);
-    }
-  }
 }
