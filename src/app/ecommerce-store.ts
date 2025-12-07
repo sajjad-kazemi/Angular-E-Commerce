@@ -24,7 +24,7 @@ export const EcommerceStore = signalStore(
   { providedIn: 'root' },
   withState({
     products: [] as Product[],
-    wishlistItems: [] as Number[],
+    wishlistItems: [] as number[],
     cartItems: [] as cartItem[],
   }),
   withProps(() => ({
@@ -147,7 +147,7 @@ export const EcommerceStore = signalStore(
       patchState(store, { cartItems: newCartItems });
       store.toaster.success('Product added to cart');
     },
-    removeFromCart: (productId?: number): void => {
+    removeOneFromCart: (productId?: number): void => {
       if (productId == null) {
         store.toaster.error();
         return;
@@ -171,6 +171,28 @@ export const EcommerceStore = signalStore(
       }
       patchState(store, { cartItems: newCartItems });
       store.toaster.success('Product removed to cart');
+    },
+    deleteFromCart: (productId?: number): void => {
+      if (!productId) {
+        store.toaster.error();
+        return;
+      }
+      let newCartItems = store
+        .cartItems()
+        .filter((item) => item.productId !== productId);
+
+      patchState(store, { cartItems: newCartItems });
+    },
+    allFromWishlistToCart: (): void => {
+      let wishlistItems = store.wishlistItems();
+      let CartItemIds = store.cartItems().map(item => item.productId);
+      let newCartItems = store.cartItems();
+      wishlistItems.forEach((id) => {
+        if (id && !CartItemIds.includes(id)) {
+          newCartItems.push({ productId: id, quantity: 1 } as cartItem);
+        }
+      });
+      patchState(store, { cartItems:newCartItems });
     },
   })),
   withComputed((store) => ({

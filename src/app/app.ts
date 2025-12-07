@@ -11,7 +11,7 @@ import { Footer } from "./layout/footer/footer";
   template: `
     <app-header class="z-10"></app-header>
     <main class="p-5 min-h-[100vh]">
-      <router-outlet/>
+        <router-outlet/>
     </main>
     <app-footer></app-footer>
   `,

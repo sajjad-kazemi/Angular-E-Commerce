@@ -13,7 +13,6 @@ import { MatIconButton } from '@angular/material/button';
       [class]="
         IsInWishlist() ? colorTrue() : colorFalse()
       "
-      class="!absolute z-10 top-3 right-3 w-10 rounded-full !bg-white shadow-md flex item-center justify-center cursor-pointer hover:bg-white-200 hover:shadow-lg"
     >
       <mat-icon>{{
         IsInWishlist() ? iconNameTrue() : iconNameFalse()

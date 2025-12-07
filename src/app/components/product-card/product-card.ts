@@ -1,19 +1,11 @@
-import {
-  Component,
-  computed,
-  effect,
-  inject,
-  input,
-  output,
-} from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 import { Product } from '../../models/product';
 import { DecimalPipe } from '@angular/common';
 import { MatAnchor, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { EcommerceStore } from '../../ecommerce-store';
 import { MatChipsModule } from '@angular/material/chips';
-import { RouterLink } from '@angular/router';
-import { ToggleWishlistButton } from '../toggle-wishlist-button/toggle-wishlist-button';
+import { ToggleWishlistButton } from '../../components/toggle-wishlist-button/toggle-wishlist-button';
 
 @Component({
   selector: 'app-product-card',
@@ -22,7 +14,6 @@ import { ToggleWishlistButton } from '../toggle-wishlist-button/toggle-wishlist-
     MatAnchor,
     MatIcon,
     MatChipsModule,
-    RouterLink,
     ToggleWishlistButton,
     MatIconButton,
   ],
@@ -37,6 +28,7 @@ import { ToggleWishlistButton } from '../toggle-wishlist-button/toggle-wishlist-
       <app-toggle-wishlist-button
         [productId]="product()?.id"
         [isDeleteButton]="wishlistDeleteButton()"
+        class="!absolute z-10 top-3 right-3 w-10 rounded-full !bg-white shadow-md flex item-center justify-center cursor-pointer hover:bg-white-200 hover:shadow-lg"
       />
       <div class="p-5 flex flex-col items-center">
         <h3 class="text-lg font-semibold text-gray-900 mb-2 leading-tight">
@@ -73,17 +65,11 @@ import { ToggleWishlistButton } from '../toggle-wishlist-button/toggle-wishlist-
               Add To Cart
             </button>
             } @else {
-            <button
-              matIconButton
-              (click)="addToCart(product()?.id)"
-            >
+            <button matIconButton (click)="addToCart(product()?.id)">
               <mat-icon>add</mat-icon>
             </button>
             <span class="m-2 text-xl font-bold">{{ cartQuantity() }}</span>
-            <button
-              matIconButton
-              (click)="removeFromCart(product()?.id)"
-            >
+            <button matIconButton (click)="removeFromCart(product()?.id)">
               <mat-icon>remove</mat-icon>
             </button>
             }
@@ -112,14 +98,14 @@ export class ProductCard {
     );
   });
   AddToCart = output<number | undefined>();
-  addToCart(productId?:number){
-    this.store.addToCart(productId)
-    this.AddToCart.emit(productId)
+  addToCart(productId?: number) {
+    this.store.addToCart(productId);
+    this.AddToCart.emit(productId);
   }
 
   RemoveFromCart = output<number | undefined>();
-  removeFromCart(productId?:number){
-    this.store.removeFromCart(productId)
-    this.RemoveFromCart.emit(productId)
+  removeFromCart(productId?: number) {
+    this.store.removeOneFromCart(productId);
+    this.RemoveFromCart.emit(productId);
   }
 }
