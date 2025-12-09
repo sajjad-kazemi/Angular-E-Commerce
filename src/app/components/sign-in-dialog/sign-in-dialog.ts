@@ -7,11 +7,7 @@ import {
   Validators,
   ɵInternalFormsSharedModule,
 } from '@angular/forms';
-import {
-  MatFormField,
-  MatPrefix,
-  MatSuffix,
-} from '@angular/material/form-field';
+import { MatFormField, MatPrefix, MatSuffix, MatError, MatLabel } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-sign-in-dialog',
@@ -23,7 +19,9 @@ import {
     MatSuffix,
     MatPrefix,
     ɵInternalFormsSharedModule,
-  ],
+    MatError,
+    MatLabel
+],
   template: `
     <div class="p-8 max-w-[480px] flex flex-col">
       <div class="flex justify-between">
@@ -40,7 +38,7 @@ import {
         </button>
       </div>
       <form>
-        <mat-form-field class="w-full mb-4">
+        <!-- <mat-form-field class="w-full mb-4">
           <mat-icon matPrefix>email</mat-icon>
           <input
             matInput
@@ -69,7 +67,32 @@ import {
               [fontIcon]="passwordVisible() ? 'visibility_off' : 'visibility'"
             ></mat-icon>
           </button>
-        </mat-form-field>
+        </mat-form-field> -->
+
+         <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" type="email" placeholder="Enter your email">
+    <mat-error *ngIf="signInForm.get('email')?.hasError('required')">
+      Email is required
+    </mat-error>
+    <mat-error *ngIf="signInForm.get('email')?.hasError('email')">
+      Enter a valid email address
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" type="password" placeholder="Enter your password">
+    @if(signInForm.get('password')?.hasError('required')){
+      <mat-error>
+        Password is required
+      </mat-error>
+    }
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="signInForm.invalid">
+    Sign In
+  </button>
       </form>
     </div>
   `,
