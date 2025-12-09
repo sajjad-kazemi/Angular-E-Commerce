@@ -65,13 +65,13 @@ import { ToggleWishlistButton } from '../../components/toggle-wishlist-button/to
               Add To Cart
             </button>
             } @else {
-            <button matIconButton (click)="addToCart(product()?.id)">
-              <mat-icon>add</mat-icon>
-            </button>
-            <span class="m-2 text-xl font-bold">{{ cartQuantity() }}</span>
-            <button matIconButton (click)="removeFromCart(product()?.id)">
-              <mat-icon>remove</mat-icon>
-            </button>
+              <button matIconButton (click)="removeFromCart(product()?.id)">
+                <mat-icon>remove</mat-icon>
+              </button>
+              <span class="m-2 text-xl font-bold">{{ cartQuantity() }}</span>
+              <button matIconButton (click)="addToCart(product()?.id)">
+                <mat-icon>add</mat-icon>
+              </button>
             }
           </div>
           }

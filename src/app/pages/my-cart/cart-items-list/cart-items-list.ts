@@ -8,7 +8,7 @@ import { CartItemCard } from "../cart-item-card/cart-item-card";
   imports: [ViewPanel, CartItemCard],
   template: `
     <div appViewPanel>
-      <h2 class="text-xl">Cart Items {{store.cartLength()}}</h2>
+      <h2 class="text-2xl font-bold mb-4">Cart Items {{store.cartLength()}}</h2>
       <div class="flex flex-col gap-6">
         @for (item of store.getCartProducts(); track item.id) {
           <app-cart-item-card (DeleteFromCart)="store.deleteFromCart($event)" (AddToCart)="store.addToCart($event)" (RemoveOneFromCart)="store.removeOneFromCart($event)" [item]="item"></app-cart-item-card>

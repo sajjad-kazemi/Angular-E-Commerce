@@ -32,7 +32,7 @@ export const EcommerceStore = signalStore(
     toaster: inject(Toaster),
   })),
   withMethods((store) => ({
-    addProduct: (item: Product) => {
+    addProduct: (item: Product): void => {
       if (item) {
         let newProducts = store.products();
         newProducts.push(item);
@@ -67,13 +67,13 @@ export const EcommerceStore = signalStore(
         return products;
       });
     },
-    getAllProducts: () => {
+    getAllProducts: (): Product[] => {
       return store.products();
     },
-    wishlistItemsIds: () => {
+    wishlistItemsIds: (): number[] => {
       return store.wishlistItems();
     },
-    addWishlistItem: (productId?: number) => {
+    addWishlistItem: (productId?: number): void => {
       if (!productId) return;
       const findProduct = store
         .products()
@@ -83,7 +83,7 @@ export const EcommerceStore = signalStore(
       patchState(store, { wishlistItems: newWishlistItems });
       store.toaster.success('Product added to wishlist');
     },
-    removeWishlistItem: (productId?: number) => {
+    removeWishlistItem: (productId?: number): void => {
       if (productId == null) {
         store.toaster.error('Invalid product id');
         return;
@@ -103,7 +103,6 @@ export const EcommerceStore = signalStore(
     },
     getCartProducts: (): Product[] => {
       let items = store.cartItems();
-      // let cartProducts = store.products().map(product =>{
       let cartProducts: Product[] = [];
       store.products().forEach((product) => {
         let findCartItem = items.find((x) => x.productId === product.id);
@@ -183,17 +182,22 @@ export const EcommerceStore = signalStore(
 
       patchState(store, { cartItems: newCartItems });
     },
-    allFromWishlistToCart: (): void => {
+    allWishlistToCart: (): void => {
       let wishlistItems = store.wishlistItems();
       let CartItemIds = store.cartItems().map(item => item.productId);
-      let newCartItems = store.cartItems();
-      wishlistItems.forEach((id) => {
-        if (id && !CartItemIds.includes(id)) {
+      let newCartItems = [...store.cartItems()];
+      for(let id of wishlistItems) {
+        let product = store.products().find(item => item.id == id)
+        if (!CartItemIds.includes(id) && product?.inStock) {
           newCartItems.push({ productId: id, quantity: 1 } as cartItem);
         }
-      });
+      }
       patchState(store, { cartItems:newCartItems });
     },
+    proceedToCheckout: (): void =>{
+      patchState(store,{cartItems:[]})
+      store.toaster.success('The Checkout process is done.\n Your order is on the way')
+    }
   })),
   withComputed((store) => ({
     getWishlistItems: () => {
