@@ -13,11 +13,16 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { Toaster } from './services/toaster';
 import { cartItem } from './models/cart';
+import { MatDialog } from '@angular/material/dialog';
+import { SignInDialog } from './components/sign-in-dialog/sign-in-dialog';
+import { SignInParams, User } from './models/user';
+import { Router } from '@angular/router';
 
 export type EcommerceState = {
   products: Product[];
-  wishlistItems: Product[];
+  wishlistItems: number[];
   cartItems: cartItem[];
+  user: User | null;
 };
 
 export const EcommerceStore = signalStore(
@@ -26,10 +31,13 @@ export const EcommerceStore = signalStore(
     products: [] as Product[],
     wishlistItems: [] as number[],
     cartItems: [] as cartItem[],
-  }),
+    user: null,
+  } as EcommerceState),
   withProps(() => ({
     http: inject(HttpClient),
     toaster: inject(Toaster),
+    matDialog: inject(MatDialog),
+    router: inject(Router),
   })),
   withMethods((store) => ({
     addProduct: (item: Product): void => {
@@ -184,20 +192,47 @@ export const EcommerceStore = signalStore(
     },
     allWishlistToCart: (): void => {
       let wishlistItems = store.wishlistItems();
-      let CartItemIds = store.cartItems().map(item => item.productId);
+      let CartItemIds = store.cartItems().map((item) => item.productId);
       let newCartItems = [...store.cartItems()];
-      for(let id of wishlistItems) {
-        let product = store.products().find(item => item.id == id)
+      for (let id of wishlistItems) {
+        let product = store.products().find((item) => item.id == id);
         if (!CartItemIds.includes(id) && product?.inStock) {
           newCartItems.push({ productId: id, quantity: 1 } as cartItem);
         }
       }
-      patchState(store, { cartItems:newCartItems });
+      patchState(store, { cartItems: newCartItems });
     },
-    proceedToCheckout: (): void =>{
-      patchState(store,{cartItems:[]})
-      store.toaster.success('The Checkout process is done.\n Your order is on the way')
-    }
+    proceedToCheckout: (): void => {
+      store.matDialog.open(SignInDialog, {
+        disableClose: true,
+        data: {
+          checkout: true,
+        },
+      });
+      // patchState(store,{cartItems:[]})
+      // store.toaster.success('The Checkout process is done.\n Your order is on the way')
+    },
+    signIn: (params: SignInParams): void => {
+      patchState(store, {
+        user: {
+          id: 1,
+          name: 'John',
+          email: params.email,
+          imageUrl: 'assets/user.png',
+        },
+      });
+      store.matDialog.getDialogById(params.dialogId)?.close();
+      if (params.checkout) {
+        store.router.navigate(['/checkout']);
+      }
+    },
+    signUp: (): void => {
+      return;
+    },
+    signOut: (): void => {
+      console.log('etet')
+      return;
+    },
   })),
   withComputed((store) => ({
     getWishlistItems: () => {
@@ -213,6 +248,9 @@ export const EcommerceStore = signalStore(
     },
     cartLength: () => {
       return store.cartItems().length;
+    },
+    isUserLoggedIn: (): boolean => {
+      return !!store.user;
     },
   })),
   withHooks({

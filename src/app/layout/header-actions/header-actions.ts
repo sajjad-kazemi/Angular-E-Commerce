@@ -5,17 +5,41 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterLink } from "@angular/router";
 import { EcommerceStore } from '../../ecommerce-store';
 import { MatBadge } from '@angular/material/badge'
+import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { MatDivider } from "@angular/material/divider";
 
 @Component({
   selector: 'app-header-actions',
-  imports: [MatIconButton, MatButton, MatIcon, MatTooltipModule, RouterLink, MatBadge],
+  imports: [MatIconButton, MatButton, MatIcon, MatTooltipModule, RouterLink, MatBadge, MatMenuItem, MatMenuTrigger, MatMenu, MatDivider],
   template: `
     <div class="flex items-center gap-2">
       <button matIconButton matTooltip="Cart" routerLink="/my_cart" [matBadgeHidden]="cartLength() === 0" [matBadge]="cartLength()"><mat-icon>shopping_cart</mat-icon></button>
       <button matIconButton [matBadgeHidden]="wishlistLength() === 0" [matBadge]="wishlistLength()" matTooltip="Wish List" routerLink="/my_wishlist"><mat-icon>favorite</mat-icon></button>
-      <button matButton>Sign in</button>
-      <button matButton="filled">Sign up</button>
-      <button matIconButton matTooltip="Profile"><mat-icon>person</mat-icon></button>
+      @if(store.user(); as user) {
+        <button matIconButton matTooltip="Profile" [matMenuTriggerFor]="userMenu">
+          <img [src]="user.imageUrl" [alt]="user.name + 'Profile Picture'" class="w-8 h-8 rounded-full" />
+        </button>
+
+        <mat-menu #userMenu xPosition="before">
+          <div class="flex flex-col px-3 min-w-[200px]">
+            <span class="text-sm font-semibold">{{user.name}}</span>
+            <span class="text-xs text-gray-500">{{user.email}}</span>
+          </div>
+          <mat-divider></mat-divider>
+          <button 
+          class="!min-h-[32px] w-full flex items-center gap-2 p-3"
+          mat-menu-item
+          (click)="store.signOut()">
+          <mat-icon>logout</mat-icon>  
+          Sign Out
+          </button>
+        </mat-menu>
+      } 
+      @else {
+        <button matButton>Sign in</button>
+        <button matButton="filled">Sign up</button>
+      }
+      <!-- <button matIconButton ><mat-icon>person</mat-icon></button> -->
     </div>
   `,
   styles: ``,
