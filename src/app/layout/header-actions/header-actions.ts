@@ -7,6 +7,9 @@ import { EcommerceStore } from '../../ecommerce-store';
 import { MatBadge } from '@angular/material/badge'
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatDivider } from "@angular/material/divider";
+import { MatDialog } from '@angular/material/dialog';
+import { SignInDialog } from '../../components/sign-in-dialog/sign-in-dialog';
+import { SignUpDialog } from '../../components/sign-up-dialog/sign-up-dialog';
 
 @Component({
   selector: 'app-header-actions',
@@ -17,7 +20,7 @@ import { MatDivider } from "@angular/material/divider";
       <button matIconButton [matBadgeHidden]="wishlistLength() === 0" [matBadge]="wishlistLength()" matTooltip="Wish List" routerLink="/my_wishlist"><mat-icon>favorite</mat-icon></button>
       @if(store.user(); as user) {
         <button matIconButton matTooltip="Profile" [matMenuTriggerFor]="userMenu">
-          <img [src]="user.imageUrl" [alt]="user.name + 'Profile Picture'" class="w-8 h-8 rounded-full" />
+          <img [src]="user.imageUrl || 'assets/user.png'" [alt]="user.name + 'Profile Picture'" class="w-8 h-8 rounded-full" />
         </button>
 
         <mat-menu #userMenu xPosition="before">
@@ -30,14 +33,14 @@ import { MatDivider } from "@angular/material/divider";
           class="!min-h-[32px] w-full flex items-center gap-2 p-3"
           mat-menu-item
           (click)="store.signOut()">
-          <mat-icon>logout</mat-icon>  
-          Sign Out
+          <mat-icon>logout</mat-icon>
+          Log Out
           </button>
         </mat-menu>
       } 
       @else {
-        <button matButton>Sign in</button>
-        <button matButton="filled">Sign up</button>
+        <button matButton (click)="openSignInDialog()">Sign in</button>
+        <button matButton="filled" (click)="openSignUpDialog()">Sign up</button>
       }
       <!-- <button matIconButton ><mat-icon>person</mat-icon></button> -->
     </div>
@@ -46,6 +49,27 @@ import { MatDivider } from "@angular/material/divider";
 })
 export class HeaderActions {
   store = inject(EcommerceStore);
+  matDialog = inject(MatDialog);
   wishlistLength = this.store.wishlistLength;
   cartLength = this.store.cartLength;
+  openSignInDialog(){
+    this.matDialog.open(SignInDialog,
+      {
+        disableClose:true,
+        data:{
+          checkout:false
+        }
+      }
+    );
+  }
+  openSignUpDialog(){
+    this.matDialog.open(SignUpDialog,
+      {
+        disableClose:true,
+        data:{
+          checkout:false
+        }
+      }
+    );
+  }
 }

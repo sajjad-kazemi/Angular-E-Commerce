@@ -9,6 +9,9 @@ import { CommonModule } from '@angular/common';
   template: `
     <div appViewPanel>
       <h2 class="text-2xl font-bold mb-4">Order Summary</h2>
+
+        <ng-content select="[checkoutItems]"></ng-content>
+
       <div class="space-y-3 text-lg pt-4 border-t">
         <div class="flex justify-between">
           <span>Subtotal</span>

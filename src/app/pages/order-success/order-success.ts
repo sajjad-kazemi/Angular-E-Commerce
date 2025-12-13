@@ -1,12 +1,27 @@
 import { Component } from '@angular/core';
+import { MatIcon } from "@angular/material/icon";
+import { MatAnchor } from "@angular/material/button";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-order-success',
-  imports: [],
+  imports: [MatIcon, MatAnchor, RouterLink],
   template: `
-    <p>
-      order-success works!
-    </p>
+    <div class="flex justify-center items-center h-[calc(90vh)] py-6">
+      <div class="flex flex-col items-center justify-center text-center bg-white rounded-xl shadow p-8 gap-6">
+        <mat-icon class="!text-green-500 !h-[56px] !w-[56px] !text-[56px]">check_circle</mat-icon>
+        <h2 class="font-semibold text-green-600 text-2xl font-bold">Order Successful!</h2>
+        <p class="text-base">
+          Thank you for your purchase! Your order has been confirmed and will be shipped soon.
+        </p>
+        <p class="text-gray-600">
+          You will receive an email confirmation shortly with your order details and tracking information.
+        </p>
+        <button matButton="filled" color="primary" class="w-full max-w-xs" routerLink="/">
+          Continue Shopping
+        </button>
+      </div>
+    </div>
   `,
   styles: ``,
 })

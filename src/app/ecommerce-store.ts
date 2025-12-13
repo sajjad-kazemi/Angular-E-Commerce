@@ -15,14 +15,16 @@ import { Toaster } from './services/toaster';
 import { cartItem } from './models/cart';
 import { MatDialog } from '@angular/material/dialog';
 import { SignInDialog } from './components/sign-in-dialog/sign-in-dialog';
-import { SignInParams, User } from './models/user';
+import { SignInParams, SignUpParams, User } from './models/user';
 import { Router } from '@angular/router';
+import { Order } from './models/order';
 
 export type EcommerceState = {
   products: Product[];
   wishlistItems: number[];
   cartItems: cartItem[];
   user: User | null;
+  loading: boolean;
 };
 
 export const EcommerceStore = signalStore(
@@ -30,8 +32,9 @@ export const EcommerceStore = signalStore(
   withState({
     products: [] as Product[],
     wishlistItems: [] as number[],
-    cartItems: [] as cartItem[],
-    user: null,
+    cartItems: [{ productId: 101, quantity: 2 }] as cartItem[],
+    user: { name: 'john doe', email: 'example@email.com', id: 1 },
+    loading: false,
   } as EcommerceState),
   withProps(() => ({
     http: inject(HttpClient),
@@ -40,7 +43,7 @@ export const EcommerceStore = signalStore(
     router: inject(Router),
   })),
   withMethods((store) => ({
-    addProduct: (item: Product): void => {
+    addProduct: (item: Product) => {
       if (item) {
         let newProducts = store.products();
         newProducts.push(item);
@@ -81,7 +84,7 @@ export const EcommerceStore = signalStore(
     wishlistItemsIds: (): number[] => {
       return store.wishlistItems();
     },
-    addWishlistItem: (productId?: number): void => {
+    addWishlistItem: (productId?: number) => {
       if (!productId) return;
       const findProduct = store
         .products()
@@ -91,7 +94,7 @@ export const EcommerceStore = signalStore(
       patchState(store, { wishlistItems: newWishlistItems });
       store.toaster.success('Product added to wishlist');
     },
-    removeWishlistItem: (productId?: number): void => {
+    removeWishlistItem: (productId?: number) => {
       if (productId == null) {
         store.toaster.error('Invalid product id');
         return;
@@ -123,7 +126,7 @@ export const EcommerceStore = signalStore(
       });
       return cartProducts;
     },
-    addToCart: (productId?: number): void => {
+    addToCart: (productId?: number) => {
       if (productId == null) {
         store.toaster.error();
         return;
@@ -154,7 +157,7 @@ export const EcommerceStore = signalStore(
       patchState(store, { cartItems: newCartItems });
       store.toaster.success('Product added to cart');
     },
-    removeOneFromCart: (productId?: number): void => {
+    removeOneFromCart: (productId?: number) => {
       if (productId == null) {
         store.toaster.error();
         return;
@@ -179,7 +182,7 @@ export const EcommerceStore = signalStore(
       patchState(store, { cartItems: newCartItems });
       store.toaster.success('Product removed to cart');
     },
-    deleteFromCart: (productId?: number): void => {
+    deleteFromCart: (productId?: number) => {
       if (!productId) {
         store.toaster.error();
         return;
@@ -190,7 +193,7 @@ export const EcommerceStore = signalStore(
 
       patchState(store, { cartItems: newCartItems });
     },
-    allWishlistToCart: (): void => {
+    allWishlistToCart: () => {
       let wishlistItems = store.wishlistItems();
       let CartItemIds = store.cartItems().map((item) => item.productId);
       let newCartItems = [...store.cartItems()];
@@ -202,7 +205,7 @@ export const EcommerceStore = signalStore(
       }
       patchState(store, { cartItems: newCartItems });
     },
-    proceedToCheckout: (): void => {
+    proceedToCheckout: () => {
       store.matDialog.open(SignInDialog, {
         disableClose: true,
         data: {
@@ -212,11 +215,27 @@ export const EcommerceStore = signalStore(
       // patchState(store,{cartItems:[]})
       // store.toaster.success('The Checkout process is done.\n Your order is on the way')
     },
-    signIn: (params: SignInParams): void => {
+    signIn: (params: SignInParams) => {
       patchState(store, {
         user: {
           id: 1,
           name: 'John',
+          email: params.email,
+          imageUrl: 'assets/user.png',
+        },
+      });
+      if (params.dialogId) {
+        store.matDialog.getDialogById(params.dialogId)?.close();
+      }
+      if (params.checkout) {
+        store.router.navigate(['/checkout']);
+      }
+    },
+    signUp: (params: SignUpParams) => {
+      patchState(store, {
+        user: {
+          id: 1,
+          name: params.name,
           email: params.email,
           imageUrl: 'assets/user.png',
         },
@@ -226,12 +245,39 @@ export const EcommerceStore = signalStore(
         store.router.navigate(['/checkout']);
       }
     },
-    signUp: (): void => {
+    signOut: () => {
+      patchState(store, { user: null });
       return;
     },
-    signOut: (): void => {
-      console.log('etet')
-      return;
+    placeOrder: async () => {
+      if(!store.user()){
+        store.toaster.error('Please Sign In first')
+        return;
+      }
+      patchState(store, { loading: true });
+      const cartItems = store.cartItems().map((item) => {
+        let prodeuct = store.products().find((x) => x.id == item.productId);
+        return {
+          id: item.productId,
+          price: prodeuct?.price,
+          quantity: item.quantity,
+        };
+      });
+      const order: Order = {
+        id: crypto.randomUUID(),
+        userId: store.user()?.id || 0,
+        total: +cartItems
+          .reduce(
+            (acc, item) => acc + item.quantity || 0 * (item.price || 0),
+            0
+          )
+          .toFixed(2),
+        items: store.cartItems(),
+        paymentStatus: 'success',
+      };
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      patchState(store, { loading: false, cartItems: [] });
+      store.router.navigate(['/order_success']);
     },
   })),
   withComputed((store) => ({

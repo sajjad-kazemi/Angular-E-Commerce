@@ -69,7 +69,7 @@ import { SignUpDialog } from '../sign-up-dialog/sign-up-dialog';
         class="max-w-md mx-auto"
       >
         <mat-form-field MatFormField appearance="fill" class="w-full my-6">
-          <mat-label>Email</mat-label>
+          <mat-label>User Name/Email</mat-label>
           <mat-icon matPrefix>email</mat-icon>
           <input
             matInput
@@ -112,8 +112,6 @@ import { SignUpDialog } from '../sign-up-dialog/sign-up-dialog';
 
           @if(password.hasError('required') && password.touched){
           <mat-error> Password is required </mat-error>
-          } @if(password.hasError('minlength') && password.touched){
-          <mat-error> Password must be at least 8 characters </mat-error>
           }
         </mat-form-field>
 
@@ -123,14 +121,10 @@ import { SignUpDialog } from '../sign-up-dialog/sign-up-dialog';
             color="primary"
             type="submit"
             class="px-auto py-2 w-full"
-            [disabled]="signInForm.invalid"
+            [disabled]="store.loading()"
           >
             Sign in
           </button>
-        </div>
-        <div class="text-sm hover:underline text-slate-600 mt-6">
-          Already have account?
-          <a class="underline">Log In</a>
         </div>
       </form>
       <p class="text-sm text-gray-500 mt-2 text-center">

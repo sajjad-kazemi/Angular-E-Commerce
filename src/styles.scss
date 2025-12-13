@@ -40,3 +40,8 @@ body { margin: 0; font-family: Nunito, "Helvetica Neue", sans-serif; }
   gap:1rem;
 }
 
+// fix mat-input Outline with label (the border line in the box)
+.mdc-notched-outline__notch
+{
+  border-right: none;
+}
