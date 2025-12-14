@@ -2,7 +2,7 @@
   {
     "id": 100,
     "name": "Classic Leather Belt",
-    "description": "Genuine leather belt with metal buckle — durable everyday accessory.",
+    "description": "A genuine full-grain leather belt made for daily wear; the smooth finish and sturdy metal buckle give it a timeless look that pairs with both casual jeans and smarter trousers.\n\nCrafted to age gracefully, the belt develops a natural patina over time while retaining its structural strength — ideal for anyone who wants a reliable, stylish accessory that lasts.",
     "price": 24.99,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 4.0,
@@ -13,7 +13,7 @@
   {
     "id": 101,
     "name": "USB-C Fast Charger",
-    "description": "Compact 30W USB-C charger for phones and tablets.",
+    "description": "Compact 30W USB-C charger designed to deliver fast, safe charging to phones and tablets with Power Delivery support. Its small footprint makes it convenient to carry in a bag or pocket.\n\nBuilt-in protections guard against overcurrent, overvoltage and overheating, so you can top up devices quickly at home or on the go without worrying about compatibility or safety.",
     "price": 19.95,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.5,
@@ -24,7 +24,7 @@
   {
     "id": 102,
     "name": "Cotton Crew T-Shirt",
-    "description": "Soft cotton tee with regular fit — breathable and comfy.",
+    "description": "A soft cotton crew neck tee with a regular fit that breathes well and holds shape through everyday wear. The lightweight fabric is comfortable for layering or wearing alone.\n\nEasy to care for and versatile, this shirt works for casual outfits, gym sessions, or lounge days — a wardrobe staple that aims for comfort and simplicity.",
     "price": 12.5,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 3.5,
@@ -35,7 +35,7 @@
   {
     "id": 103,
     "name": "Noise-Cancelling Headphones",
-    "description": "Over-ear headphones with active noise cancellation and long battery life.",
+    "description": "Over-ear headphones with active noise cancellation tuned to reduce ambient noise for clearer listening in busy environments. Cushioned ear cups and adjustable headband offer comfort during long listening sessions.\n\nWith long battery life and a balanced sound profile, these headphones suit commuting, focus work, and travel — delivering immersive audio while keeping background distractions to a minimum.",
     "price": 89.99,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.5,
@@ -46,7 +46,7 @@
   {
     "id": 104,
     "name": "Wool Scarf",
-    "description": "Warm wool scarf — soft, insulating, and stylish.",
+    "description": "A warm wool scarf woven for insulation and softness, perfect for colder months when you need reliable warmth without bulk. The natural fibers trap heat while remaining breathable.\n\nStyled to complement both formal coats and casual jackets, this scarf adds a touch of classic sophistication while protecting you from wind and chill.",
     "price": 29.0,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 4.0,
@@ -57,7 +57,7 @@
   {
     "id": 105,
     "name": "Fitness Tracker Band",
-    "description": "Lightweight wristband that tracks steps, heart rate, and sleep.",
+    "description": "A lightweight wristband that monitors steps, heart rate and sleep to help you keep track of daily activity and recovery. The slim profile makes it comfortable to wear 24/7.\n\nEasy to sync with companion apps, the tracker provides basic metrics and activity reminders — a simple, unobtrusive tool for staying motivated and aware of your fitness trends.",
     "price": 49.99,
     "imageUrl": "assets/Technology.jpg",
     "rating": 3.5,
@@ -68,7 +68,7 @@
   {
     "id": 106,
     "name": "Denim Jacket",
-    "description": "Classic denim jacket with button closure and chest pockets.",
+    "description": "A classic denim jacket with button closure and chest pockets — a versatile outer layer that pairs with almost anything in your wardrobe. The structured denim offers enduring style and casual edge.\n\nDurable stitching and a mid-weight fabric make this jacket suitable for transitional weather; it layers well over shirts and hoodies while becoming more comfortable with each wear.",
     "price": 59.95,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 4.5,
@@ -79,7 +79,7 @@
   {
     "id": 107,
     "name": "Leather Wallet",
-    "description": "Slim bifold wallet with multiple card slots and coin pocket.",
+    "description": "A slim bifold leather wallet with multiple card slots and a coin pocket, designed to keep essentials organized without adding bulk to your pocket. The leather finish balances style and practicality.\n\nThoughtful compartment layout makes it easy to access cards and cash quickly, while the compact size ensures comfortable daily carry for those who value order and durability.",
     "price": 34.49,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 4.0,
@@ -90,7 +90,7 @@
   {
     "id": 108,
     "name": "Portable Bluetooth Speaker",
-    "description": "Small speaker with robust sound and water-resistant design.",
+    "description": "A small Bluetooth speaker that punches above its weight with robust sound and a water-resistant design, making it a great companion for picnics, showers, or poolside listening.\n\nIts compact size and long battery life mean you can stream music from a phone for hours, while the rugged build helps it withstand outdoor use and light splashes.",
     "price": 39.9,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.0,
@@ -101,7 +101,7 @@
   {
     "id": 109,
     "name": "Running Shorts",
-    "description": "Lightweight shorts with moisture-wicking fabric and pockets.",
+    "description": "Lightweight running shorts made from moisture-wicking fabric to keep you dry during workouts; an inner lining and convenient pockets add practicality for training sessions.\n\nDesigned for freedom of movement and breathability, these shorts are tuned for short-distance runs, gym routines and hot-weather exercise where comfort and ventilation matter.",
     "price": 18.75,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 3.0,
@@ -112,7 +112,7 @@
   {
     "id": 110,
     "name": "Aviator Sunglasses",
-    "description": "Classic aviator frames with UV-protective lenses.",
+    "description": "Classic aviator frames fitted with UV-protective lenses to shield your eyes from harmful rays while maintaining a timeless silhouette. The lightweight metal frame sits comfortably for all-day wear.\n\nWhether for driving or everyday style, these sunglasses combine iconic design with practical sun protection to complete a polished look.",
     "price": 22.0,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 4.0,
@@ -123,7 +123,7 @@
   {
     "id": 111,
     "name": "Wireless Mouse",
-    "description": "Ergonomic wireless mouse with adjustable DPI and long battery life.",
+    "description": "An ergonomic wireless mouse with adjustable DPI to match different tasks from precise editing to quick browsing. Its sculpted shape supports the hand to reduce fatigue during long use.\n\nWith a long battery life and a reliable wireless connection, this mouse works for home, office and travel — offering comfortable control without the clutter of cables.",
     "price": 15.99,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.5,
@@ -134,7 +134,7 @@
   {
     "id": 112,
     "name": "Hooded Sweatshirt",
-    "description": "Cozy hoodie with kangaroo pocket and drawstring hood.",
+    "description": "A cozy hooded sweatshirt featuring a kangaroo pocket and drawstring hood for adjustable coverage and warmth. The soft interior lining makes it great for lounging or layering.\n\nDurable construction means it holds up through repeated wear and washes, making this hoodie a comfortable staple for casual days and light outdoor activities.",
     "price": 35.0,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 4.0,
@@ -145,7 +145,7 @@
   {
     "id": 113,
     "name": "Beaded Bracelet",
-    "description": "Hand-strung bead bracelet — subtle everyday jewelry.",
+    "description": "A hand-strung bead bracelet that offers a subtle, handmade touch to everyday outfits; its lightweight design makes it easy to layer with other jewelry.\n\nIdeal for an understated accent, this bracelet adds texture and artisanal charm whether you wear it alone or stacked with other pieces.",
     "price": 9.99,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 3.5,
@@ -156,7 +156,7 @@
   {
     "id": 114,
     "name": "External SSD 500GB",
-    "description": "High-speed portable SSD for backups and media storage.",
+    "description": "A high-speed portable SSD that delivers fast read/write performance for backups, media storage and editing on the go. Its compact form factor makes it easy to carry with a laptop or camera bag.\n\nDurable construction and shock resistance protect your data in transit, while the generous 500GB capacity handles large files like video projects and photo libraries with ease.",
     "price": 79.99,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.5,
@@ -167,7 +167,7 @@
   {
     "id": 115,
     "name": "Chino Pants",
-    "description": "Slim-fit chinos suitable for casual and office wear.",
+    "description": "Slim-fit chino pants crafted for both casual and office wear; the tailored cut creates a neat silhouette while remaining comfortable for daily movement.\n\nMade from a soft cotton blend, these chinos are versatile enough to dress up with a blazer or down with a tee, making them a reliable wardrobe piece for many occasions.",
     "price": 42.5,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 4.0,
@@ -178,7 +178,7 @@
   {
     "id": 116,
     "name": "Canvas Tote Bag",
-    "description": "Sturdy canvas tote with roomy interior and reinforced straps.",
+    "description": "A sturdy canvas tote with a roomy interior and reinforced straps built to carry groceries, books or everyday essentials without tearing. The open top provides easy access while the durable base helps items keep their shape.\n\nPractical and eco-friendly, this tote is a reusable alternative to single-use bags and works well for errands, markets and casual commuting.",
     "price": 14.25,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 3.5,
@@ -189,7 +189,7 @@
   {
     "id": 117,
     "name": "Smart Home Plug",
-    "description": "Wi-Fi smart plug for remote control and scheduling of devices.",
+    "description": "A Wi-Fi smart plug that lets you control and schedule appliances remotely via a smartphone app or voice assistant. It turns ordinary devices into smart devices without special wiring.\n\nIdeal for automating lamps, fans or coffee makers, the plug supports timers and energy-saving routines so you can reduce power consumption and add convenience to daily routines.",
     "price": 11.99,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.0,
@@ -200,7 +200,7 @@
   {
     "id": 118,
     "name": "Polo Shirt",
-    "description": "Breathable polo with soft collar — smart casual staple.",
+    "description": "A breathable polo shirt with a soft collar for a smart casual look that transitions easily from office to weekend. The fabric wicks moisture and keeps you comfortable during warmer days.\n\nSubtle structure from the collar and placket gives a polished appearance when paired with chinos or jeans, making this a wardrobe workhorse for many occasions.",
     "price": 27.0,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 4.0,
@@ -211,7 +211,7 @@
   {
     "id": 119,
     "name": "Travel Passport Holder",
-    "description": "Compact passport sleeve with card slots and RFID protection.",
+    "description": "A compact passport holder with card slots and RFID protection to keep travel documents and cards organized and secure. Its slim profile fits easily into bags or a jacket pocket.\n\nBuilt for regular travelers, the holder keeps essentials in one place and adds a layer of security against RFID skimming while moving through airports and transit.",
     "price": 16.5,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 4.5,
@@ -222,7 +222,7 @@
   {
     "id": 120,
     "name": "Wireless Keyboard",
-    "description": "Slim wireless keyboard with quiet keys and USB receiver.",
+    "description": "A slim wireless keyboard with quiet, low-profile keys and a USB receiver for reliable connectivity. The compact layout saves desk space while offering comfortable typing for long sessions.\n\nIdeal for home offices and casual setups, the keyboard balances portability with a satisfying typing feel and works well across laptops and desktops.",
     "price": 29.99,
     "imageUrl": "assets/Technology.jpg",
     "rating": 3.5,
@@ -233,7 +233,7 @@
   {
     "id": 121,
     "name": "Lightweight Jacket",
-    "description": "Water-resistant lightweight jacket with zip closure.",
+    "description": "A water-resistant, lightweight jacket with zip closure that sheds light rain and wind while remaining breathable for active use. The streamlined cut layers easily over sweaters or tees.\n\nPractical pockets and a packable design make this jacket a handy option for travel and unpredictable weather, offering protection without bulk.",
     "price": 64.99,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 4.0,
@@ -244,7 +244,7 @@
   {
     "id": 122,
     "name": "Silver Hoop Earrings",
-    "description": "Polished silver hoops — simple and elegant.",
+    "description": "Polished silver hoop earrings that offer a simple, elegant accent to day or evening looks. Their moderate size strikes a balance between subtlety and presence.\n\nLightweight and easy to pair, these hoops work with casual outfits or more dressed-up ensembles and are designed for comfortable extended wear.",
     "price": 12.0,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 4.0,
@@ -255,7 +255,7 @@
   {
     "id": 123,
     "name": "Portable Power Bank 10000mAh",
-    "description": "High-capacity power bank to recharge phones on the go.",
+    "description": "A high-capacity 10,000mAh power bank that provides multiple phone charges for days away from an outlet. Its compact size fits easily in a bag while delivering reliable recharging for phones and small devices.\n\nEquipped with fast charging output and safety protections, the power bank is a travel essential for long commutes, flights or outdoor activities where access to power is limited.",
     "price": 24.5,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.5,
@@ -266,7 +266,7 @@
   {
     "id": 124,
     "name": "Casual Canvas Sneakers",
-    "description": "Low-top canvas sneakers with rubber sole and lace-up front.",
+    "description": "Low-top canvas sneakers with a rubber sole and lace-up front that deliver everyday comfort and a relaxed, versatile look. The breathable canvas upper keeps feet cooler in warm weather.\n\nDurable outsole grip and a cushioned insole make these sneakers suitable for walking, errands and casual styling with jeans or shorts.",
     "price": 39.0,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 3.5,
@@ -277,7 +277,7 @@
   {
     "id": 125,
     "name": "Key Organizer",
-    "description": "Compact key holder that reduces bulk and rattling.",
+    "description": "A compact key holder designed to reduce bulk and rattle by stacking keys neatly inside a slim body. It keeps keys accessible while protecting pockets and bags from scratches.\n\nEasy to use and durable, the organizer is great for those who prefer a minimalist carry and want to keep keys tidy and quiet.",
     "price": 8.99,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 4.0,
@@ -288,7 +288,7 @@
   {
     "id": 126,
     "name": "Action Camera",
-    "description": "Waterproof HD action camera with wide-angle lens and mounts.",
+    "description": "A waterproof HD action camera with a wide-angle lens and multiple mounting options for capturing adventures on land or in water. It records crisp footage suitable for sharing and editing.\n\nCompact and rugged, the camera is built for sports, biking, snorkeling or any activity where a small, durable recorder is needed to capture dynamic moments.",
     "price": 99.99,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.0,
@@ -299,7 +299,7 @@
   {
     "id": 127,
     "name": "Merino Wool Socks",
-    "description": "Soft merino socks — breathable and temperature-regulating.",
+    "description": "Soft merino wool socks that offer natural temperature regulation and moisture management for all-day comfort. The fine wool fibers are comfortable against the skin and reduce odor.\n\nPerfect for hiking, travel or everyday wear, these socks provide cushioning and breathability while keeping feet comfortable in varying conditions.",
     "price": 11.5,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 4.5,
@@ -310,7 +310,7 @@
   {
     "id": 128,
     "name": "Minimalist Card Holder",
-    "description": "Slim card holder for essential cards and a bit of cash.",
+    "description": "A slim card holder that carries essential cards and a small amount of cash without the bulk of a full wallet. Its minimalist design slips easily into front pockets for secure, low-profile carry.\n\nDurable materials and precise stitching ensure the holder stands up to daily use while keeping your necessities neatly organized.",
     "price": 10.0,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 3.5,
@@ -321,7 +321,7 @@
   {
     "id": 129,
     "name": "HD Webcam",
-    "description": "1080p webcam with built-in microphone for video calls.",
+    "description": "A 1080p HD webcam with a built-in microphone that improves clarity for video calls and streaming. The plug-and-play setup works with common conferencing apps for quick use.\n\nAdjustable mounting options let you position the camera on monitors or tripods for better framing, making it a practical upgrade for home offices and remote meetings.",
     "price": 34.99,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.0,
@@ -332,7 +332,7 @@
   {
     "id": 130,
     "name": "Linen Button-Up Shirt",
-    "description": "Breathable linen shirt with relaxed fit — ideal for warm weather.",
+    "description": "A breathable linen button-up in a relaxed fit — ideal for warm weather thanks to its lightweight, airy fabric. The natural fibers offer a cool, casual drape for summer days.\n\nPair it with shorts or chinos for a laid-back yet refined look; the shirt's texture and cut bring effortless comfort to beach trips, outdoor brunches and travel.",
     "price": 29.95,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 3.5,
@@ -343,7 +343,7 @@
   {
     "id": 131,
     "name": "Silk Tie",
-    "description": "Smooth silk tie in classic pattern — formal and refined.",
+    "description": "A smooth silk tie in a classic pattern that adds a refined finishing touch to formal outfits. The silk weave gives it a subtle sheen and elegant drape.\n\nPerfect for business meetings, weddings or special occasions, this tie pulls together a polished look while remaining comfortable and well-balanced at the knot.",
     "price": 21.0,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 4.0,
@@ -354,7 +354,7 @@
   {
     "id": 132,
     "name": "Bluetooth Earbuds",
-    "description": "In-ear earbuds with charging case and touch controls.",
+    "description": "In-ear Bluetooth earbuds that come with a charging case and touch controls for playback and calls. Their compact fit isolates noise and keeps the earbuds secure during activity.\n\nWith easy pairing and sufficient battery life, these earbuds are designed for commuting, workouts and hands-free calls when you need a wire-free listening solution.",
     "price": 44.99,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.0,
@@ -365,7 +365,7 @@
   {
     "id": 133,
     "name": "Jogger Pants",
-    "description": "Comfort-fit joggers with elastic cuffs and drawstring waist.",
+    "description": "Comfort-fit jogger pants with elastic cuffs and a drawstring waist for an adjustable, relaxed fit. Soft fabric and tapered legs provide a modern silhouette while remaining comfortable.\n\nGreat for lounging, light workouts or casual outings, these joggers combine ease of movement with casual style for everyday wear.",
     "price": 28.5,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 4.0,
@@ -376,7 +376,7 @@
   {
     "id": 134,
     "name": "Wristwatch (Quartz)",
-    "description": "Classic quartz wristwatch with leather strap and date window.",
+    "description": "A classic quartz wristwatch with a leather strap and date window for reliable timekeeping and everyday elegance. The clean dial and modest case size suit both casual and dressier occasions.\n\nQuartz movement offers dependable accuracy with minimal maintenance, while the leather strap adds comfort and a timeless aesthetic to the piece.",
     "price": 69.99,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 4.5,
@@ -387,7 +387,7 @@
   {
     "id": 135,
     "name": "Laptop Sleeve 13",
-    "description": "Padded sleeve to protect 13-inch laptops from scratches and bumps.",
+    "description": "A padded laptop sleeve sized for 13-inch devices to protect against scratches and minor bumps during transport. The slim profile slides easily into backpacks and messenger bags.\n\nSoft interior lining cushions the laptop while the exterior resists wear, making this sleeve a practical accessory for students and professionals who travel light.",
     "price": 19.5,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.0,
@@ -398,7 +398,7 @@
   {
     "id": 136,
     "name": "Baseball Cap",
-    "description": "Adjustable cap with curved brim and embroidered logo.",
+    "description": "An adjustable baseball cap with a curved brim and embroidered logo that provides sun protection and casual style. The adjustable strap ensures a comfortable fit for most head sizes.\n\nLightweight and breathable, this cap pairs well with sporty and streetwear looks and is useful for outdoor activities and everyday wear.",
     "price": 14.0,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 3.5,
@@ -409,7 +409,7 @@
   {
     "id": 137,
     "name": "Graphic Hoodie",
-    "description": "Pullover hoodie with printed graphic and soft interior lining.",
+    "description": "A pullover hoodie featuring a printed graphic and a soft interior lining for comfort and style. The relaxed fit and hood offer warmth and a casual, expressive look.\n\nDurable stitching and a cozy feel make this hoodie a go-to piece for cooler days, whether layered or worn on its own.",
     "price": 38.75,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 4.0,
@@ -420,7 +420,7 @@
   {
     "id": 138,
     "name": "Cable Organizer",
-    "description": "Small pouch to keep chargers and cables neatly stored.",
+    "description": "A small pouch designed to keep chargers and cables neatly stored and tangle-free while traveling. Elastic loops and compartments separate different cords and accessories.\n\nCompact and lightweight, it helps reduce clutter in bags and keeps electronics accessories easy to find when you need them.",
     "price": 7.5,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 3.5,
@@ -431,7 +431,7 @@
   {
     "id": 139,
     "name": "Wireless Charging Pad",
-    "description": "Qi-certified charging pad for compatible phones and earbuds.",
+    "description": "A Qi-certified wireless charging pad compatible with phones and earbuds that support wireless charging; simply place devices on the pad for cable-free power.\n\nIts slim design blends into nightstands and desks, offering a convenient and tidy way to keep devices topped up without fumbling for cables.",
     "price": 18.99,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.0,
@@ -442,7 +442,7 @@
   {
     "id": 140,
     "name": "Summer Dress",
-    "description": "Lightweight summer dress with breathable fabric and flattering cut.",
+    "description": "A lightweight summer dress made from breathable fabric with a flattering cut that keeps you comfortable in warm weather. The airy silhouette moves easily and feels cool on hot days.\n\nPerfect for vacations, outdoor events or casual weekend wear, the dress offers effortless style with easy care and a comfortable fit.",
     "price": 45.0,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 4.5,
@@ -453,7 +453,7 @@
   {
     "id": 141,
     "name": "Travel Sunglass Case",
-    "description": "Hard-shell case to protect sunglasses during travel.",
+    "description": "A hard-shell travel case to protect sunglasses from scratches and impact while on the move. The compact design fits easily into luggage or day bags for secure storage.\n\nInternally lined to prevent abrasion, this case is a simple way to keep eyewear safe during travel and everyday transport.",
     "price": 6.99,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 3.0,
@@ -464,7 +464,7 @@
   {
     "id": 142,
     "name": "Bluetooth Tracker Tag",
-    "description": "Small tracker to help locate keys, bags, or other items via app.",
+    "description": "A small Bluetooth tracker tag designed to help locate keys, bags or other items via a companion app. The compact design attaches easily and pings your phone when items go missing.\n\nUseful for busy lifestyles, the tag provides peace of mind by simplifying the process of finding commonly misplaced items around the home or on the go.",
     "price": 12.5,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.0,
@@ -475,7 +475,7 @@
   {
     "id": 143,
     "name": "Fleece Pullover",
-    "description": "Soft fleece pullover — warm and easy to layer.",
+    "description": "A soft fleece pullover that offers lightweight warmth and is easy to layer under jackets. The plush interior provides cozy comfort on cool days.\n\nPractical for outdoor walks and casual outfits, the pullover balances insulation with breathability to keep you comfortable during activity.",
     "price": 33.25,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 4.0,
@@ -486,7 +486,7 @@
   {
     "id": 144,
     "name": "Leather Keychain",
-    "description": "Durable leather keychain with metal ring.",
+    "description": "A durable leather keychain with a metal ring that adds a refined touch to everyday carry. The leather ages nicely and helps identify keys quickly.\n\nCompact and sturdy, it’s a simple accessory that improves organization and adds a subtle style accent to your keys or bag.",
     "price": 5.99,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 3.5,
@@ -497,7 +497,7 @@
   {
     "id": 145,
     "name": "Smart LED Bulb",
-    "description": "Color-changing smart bulb controllable by app and voice assistants.",
+    "description": "A color-changing smart LED bulb controllable by app and voice assistants to set schedules, scenes and moods around the home. Energy-efficient lighting offers long life and low power draw.\n\nWith easy integration into smart home systems, the bulb lets you automate lighting for convenience, ambience and energy savings across rooms.",
     "price": 13.49,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.5,
@@ -508,7 +508,7 @@
   {
     "id": 146,
     "name": "Slip-On Loafers",
-    "description": "Comfortable slip-on loafers with cushioned insole.",
+    "description": "Comfortable slip-on loafers with a cushioned insole for supportive, all-day wear. The easy on/off design makes them perfect for work or casual outings.\n\nConstructed for durability and style, these loafers pair well with both tailored and relaxed looks, delivering timeless comfort.",
     "price": 52.0,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 4.0,
@@ -519,7 +519,7 @@
   {
     "id": 147,
     "name": "Charm Necklace",
-    "description": "Delicate necklace with a small charm pendant.",
+    "description": "A delicate charm necklace featuring a small pendant that adds a subtle focal point to any neckline. The fine chain and understated charm make it easy to layer with other pieces.\n\nIdeal for gifting or everyday wear, the necklace enhances outfits with a gentle, personal touch.",
     "price": 17.5,
     "imageUrl": "assets/Accessories.jpg",
     "rating": 4.0,
@@ -530,7 +530,7 @@
   {
     "id": 148,
     "name": "Multiport USB Hub",
-    "description": "Expand a single USB-C port into multiple USB-A and HDMI connections.",
+    "description": "A multiport USB hub that expands a single USB-C port into multiple USB-A and HDMI connections for added productivity. It’s a practical accessory for laptops with limited ports.\n\nDurable and compact, the hub enables easy connection of external displays, storage and peripherals for a streamlined workstation setup on the go.",
     "price": 39.99,
     "imageUrl": "assets/Technology.jpg",
     "rating": 4.0,
@@ -541,7 +541,7 @@
   {
     "id": 149,
     "name": "Thermal Base Layer",
-    "description": "Stretchy thermal top for layering in cold weather.",
+    "description": "A stretchy thermal base layer designed to trap heat and wick moisture for comfortable layering in cold weather. The close fit allows for easy layering under outerwear without bulk.\n\nIdeal for outdoor activities and winter sports, this base layer provides insulation and mobility so you can stay warm while staying active.",
     "price": 25.0,
     "imageUrl": "assets/Clothes.jpg",
     "rating": 4.5,

@@ -2,6 +2,7 @@ import { computed, inject } from '@angular/core';
 import { GetProductFilter, Product } from './models/product';
 import {
   patchState,
+  signalMethod,
   signalStore,
   withComputed,
   withHooks,
@@ -18,7 +19,7 @@ import { SignInDialog } from './components/sign-in-dialog/sign-in-dialog';
 import { SignInParams, SignUpParams, User } from './models/user';
 import { Router } from '@angular/router';
 import { Order } from './models/order';
-import { withStorageSync } from '@angular-architects/ngrx-toolkit'
+import { SyncConfig, withStorageSync } from '@angular-architects/ngrx-toolkit';
 
 export type EcommerceState = {
   products: Product[];
@@ -26,23 +27,28 @@ export type EcommerceState = {
   cartItems: cartItem[];
   user: User | null;
   loading: boolean;
+  selectedProductId: number | undefined;
 };
 
 export const EcommerceStore = signalStore(
   { providedIn: 'root' },
-  withStorageSync({
-    key:'ecommerce-store',
-    select:(state:EcommerceState) => ({wishlistItems:state.wishlistItems,cartItems:state.cartItems,user:state.user})
-  }),
   withState({
     products: [] as Product[],
     wishlistItems: [] as number[],
-    cartItems: [{ productId: 101, quantity: 2 }] as cartItem[],
-    user: { name: 'john doe', email: 'example@email.com', id: 1 },
+    cartItems: [] as cartItem[],
+    user: null,
     loading: false,
+    selectedProductId: undefined
   } as EcommerceState),
+  withStorageSync({
+    key: 'ecommerce-store',
+    select: (state: any) => ({
+      wishlistItems: state.wishlistItems,
+      cartItems: state.cartItems,
+      user: state.user,
+    }),
+  }),
   withProps(() => ({
-    http: inject(HttpClient),
     toaster: inject(Toaster),
     matDialog: inject(MatDialog),
     router: inject(Router),
@@ -86,6 +92,9 @@ export const EcommerceStore = signalStore(
     getAllProducts: (): Product[] => {
       return store.products();
     },
+    setSelectedProductId: signalMethod<string>( (id:string) => {
+      patchState(store,{selectedProductId:+id})
+    }),
     wishlistItemsIds: (): number[] => {
       return store.wishlistItems();
     },
@@ -255,8 +264,8 @@ export const EcommerceStore = signalStore(
       return;
     },
     placeOrder: async () => {
-      if(!store.user()){
-        store.toaster.error('Please Sign In first')
+      if (!store.user()) {
+        store.toaster.error('Please Sign In first');
         return;
       }
       patchState(store, { loading: true });
@@ -303,12 +312,13 @@ export const EcommerceStore = signalStore(
     isUserLoggedIn: (): boolean => {
       return !!store.user;
     },
+    selectedProduct: () => store.products().find(item => item.id === store.selectedProductId())
   })),
   withHooks({
-    async onInit(store) {
+    async onInit(store,http=inject(HttpClient)) {
       try {
         const products = await firstValueFrom(
-          store.http.get<Product[]>('/api/products.json')
+          http.get<Product[]>('/api/products.json')
         );
         // store.setProducts(products)
         patchState(store, { products: products });

@@ -25,6 +25,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/my-cart/my-cart')
     },
     {
+        path:'product/:productId',
+        loadComponent: () => import('./pages/product-details/product-details')
+    },
+    {
       path:'checkout',
       loadComponent: () => import('./pages/checkout/checkout'),
       canActivate: [authGuard]
